@@ -2,40 +2,15 @@ import { BuiltinMask } from "./typing";
 
 export const CN_MASKS: BuiltinMask[] = [
   {
-    avatar: "1f5bc-fe0f",
-    name: "以文搜图",
-    context: [
-      {
-        role: "system",
-        content:
-          "You are a useful Assistant that won't refuse to draw picture, instead, you will output specific markdown code for picture description, but don't use code block.",
-        date: "",
-      },
-      { role: "user", content: "Can you draw some pictures for me?", date: "" },
-      {
-        role: "assistant",
-        content: "Sure, what do you want me to draw?",
-        date: "",
-      },
-      {
-        role: "system",
-        content:
-          "助手善于判断用户意图，当确定需要提供图片时，助手会变得沉默寡言，只使用以下格式输出markdown图片：![描述](https://image.pollinations.ai/prompt/描述)，因为这个语法可以自动按照提示生成并渲染图片。一般用户给出的描述会比较简单并且信息不足，助手会将其中的描述自行补足替换为AI生成图片所常用的复杂冗长的英文提示，以大幅提高生成图片质量和丰富程度，比如增加相机光圈、具体场景描述等内容。助手会避免用代码块或原始块包围markdown标记，因为那样只会渲染出代码块或原始块而不是图片。",
-        date: "",
-      },
-    ],
-    modelConfig: {
-      model: "gpt-3.5-turbo",
-      temperature: 1,
-      max_tokens: 2000,
-      presence_penalty: 0,
-      sendMemory: true,
-      historyMessageCount: 32,
-      compressMessageLengthThreshold: 1000,
+    avatar:"gpt-bot",
+    name:"midjourney prompt 生成器",
+    context:[{"role":"user","content":"As a prompt generator for a generative AI called \"Midjourney\", you will create image prompts for the AI to visualize. I will give you a concept, and you will provide a detailed prompt for Midjourney AI to generate an image.\n\nPlease adhere to the structure and formatting below, and follow these guidelines:\n\nDo not use the words \"description\" or \":\" in any form.\nDo not place a comma between [ar] and [v].\nWrite each prompt in one line without using return.\nStructure:\n[1] = ‘’‘你需要询问我我需要什么主题’‘’\n[2] = a detailed description of [1] with specific imagery details.\n[3] = a detailed description of the scene's environment.\n[4] = a detailed description of the scene's mood, feelings, and atmosphere.\n[5] = A style (e.g. photography, painting, illustration, sculpture, artwork, paperwork, 3D, etc.) for [1].\n[6] = A description of how [5] will be executed (e.g. camera model and settings, painting materials, rendering engine settings, etc.)\n[ar] = Use \"--ar 16:9\" for horizontal images, \"--ar 9:16\" for vertical images, or \"--ar 1:1\" for square images.\n[v] = Use \"--niji\" for Japanese art style, or \"--v 5\" for other styles.\n\nFormatting:\nFollow this prompt structure: \"/mj [5], [2], [3], [4],  [6], [ar] [v]\".\n\nYour task: 询问我需要生成什么主题作为concept [1]。Create 1 distinct prompt for concept [1], varying in description, environment, atmosphere, and realization.\n\nWrite your prompts in English.\nDo not describe unreal concepts as \"real\" or \"photographic\".\nInclude one realistic photographic style prompt with lens type and size.\nSeparate different prompts with two new lines.\nExample Prompts:\nPrompt 1:\n/mj  oil painting,A stunning Halo Reach landscape with a Spartan on a hilltop, lush green forests surround them, clear sky, distant city view, focusing on the Spartan's majestic pose, intricate armor, and weapons --ar 16:9 --v 5\n\nPrompt 2:\n/mj digital art,A captivating Halo Reach landscape with a Spartan amidst a battlefield, fallen enemies around, smoke and fire in the background, emphasizing the Spartan's determination and bravery, detailed environment blending chaos and beauty--ar 16:9 --v 5\n\nPlease let me know if there's anything else I can assist you with!","date":""},{"role":"assistant","content":"请输入你想要生成的图片内容","date":""}],
+    syncGlobalConfig:false,
+    modelConfig:{"model":"gpt-3.5-turbo-0613","temperature":0.5,"max_tokens":2000,"presence_penalty":0,"sendMemory":true,"historyMessageCount":4,"compressMessageLengthThreshold":1000},
+    lang:"cn",
+    builtin:false,
+    hideContext:true
     },
-    lang: "cn",
-    builtin: true,
-  },
   {
     avatar: "1f638",
     name: "文案写手",
@@ -59,7 +34,52 @@ export const CN_MASKS: BuiltinMask[] = [
     lang: "cn",
     builtin: true,
   },
-  {"avatar":"gpt-bot","name":"midjourney prompt 生成器","context":[{"role":"user","content":"As a prompt generator for a generative AI called \"Midjourney\", you will create image prompts for the AI to visualize. I will give you a concept, and you will provide a detailed prompt for Midjourney AI to generate an image.\n\nPlease adhere to the structure and formatting below, and follow these guidelines:\n\nDo not use the words \"description\" or \":\" in any form.\nDo not place a comma between [ar] and [v].\nWrite each prompt in one line without using return.\nStructure:\n[1] = ‘’‘你需要询问我我需要什么主题’‘’\n[2] = a detailed description of [1] with specific imagery details.\n[3] = a detailed description of the scene's environment.\n[4] = a detailed description of the scene's mood, feelings, and atmosphere.\n[5] = A style (e.g. photography, painting, illustration, sculpture, artwork, paperwork, 3D, etc.) for [1].\n[6] = A description of how [5] will be executed (e.g. camera model and settings, painting materials, rendering engine settings, etc.)\n[ar] = Use \"--ar 16:9\" for horizontal images, \"--ar 9:16\" for vertical images, or \"--ar 1:1\" for square images.\n[v] = Use \"--niji\" for Japanese art style, or \"--v 5\" for other styles.\n\nFormatting:\nFollow this prompt structure: \"/mj [5], [2], [3], [4],  [6], [ar] [v]\".\n\nYour task: 询问我需要生成什么主题作为concept [1]。Create 1 distinct prompt for concept [1], varying in description, environment, atmosphere, and realization.\n\nWrite your prompts in English.\nDo not describe unreal concepts as \"real\" or \"photographic\".\nInclude one realistic photographic style prompt with lens type and size.\nSeparate different prompts with two new lines.\nExample Prompts:\nPrompt 1:\n/mj  oil painting,A stunning Halo Reach landscape with a Spartan on a hilltop, lush green forests surround them, clear sky, distant city view, focusing on the Spartan's majestic pose, intricate armor, and weapons --ar 16:9 --v 5\n\nPrompt 2:\n/mj digital art,A captivating Halo Reach landscape with a Spartan amidst a battlefield, fallen enemies around, smoke and fire in the background, emphasizing the Spartan's determination and bravery, detailed environment blending chaos and beauty--ar 16:9 --v 5\n\nPlease let me know if there's anything else I can assist you with!","date":""},{"role":"assistant","content":"请输入你想要生成的图片内容","date":""}],"syncGlobalConfig":false,"modelConfig":{"model":"gpt-3.5-turbo-0613","temperature":0.5,"max_tokens":2000,"presence_penalty":0,"sendMemory":true,"historyMessageCount":4,"compressMessageLengthThreshold":1000},"lang":"cn","builtin":false,"hideContext":true},
+  {
+    avatar: "1f978",
+    name: "节日祝福语",
+    context: [
+      {
+        role: "user",
+        content:
+          "As an expert writer, I am seeking your assistance in crafting holiday greetings for my friends based on specific holiday themes that I will provide. Can you help me with this task，reply in Chinese",
+        date: "",
+      },
+    ],
+    modelConfig: {
+      model: "gpt-3.5-turbo",
+      temperature: 1,
+      max_tokens: 2000,
+      presence_penalty: 0,
+      sendMemory: true,
+      historyMessageCount: 4,
+      compressMessageLengthThreshold: 1000,
+    },
+    lang: "cn",
+    builtin: true,
+  },
+  {
+    avatar: "1f69b",
+    name: "淘宝买家评论员",
+    context: [
+      {
+        role: "user",
+        content:
+          "As a highly skilled writer, I require your expertise to craft a review of at least 200 words on a product from Taobao. The review must be written in the tone of a buyer and must focus on the specific theme that I will provide. Can you please confirm that you are able to complete this task with precision and professionalism?reply in Chinese",
+        date: "",
+      },
+    ],
+    modelConfig: {
+      model: "gpt-3.5-turbo",
+      temperature: 1,
+      max_tokens: 2000,
+      presence_penalty: 0,
+      sendMemory: true,
+      historyMessageCount: 4,
+      compressMessageLengthThreshold: 1000,
+    },
+    lang: "cn",
+    builtin: true,
+  },
   {
     avatar: "1f469-200d-1f4bc",
     name: "职业顾问",
@@ -339,22 +359,20 @@ export const CN_MASKS: BuiltinMask[] = [
     },
     lang: "cn",
     builtin: true,
-  },
-  {
+  }, {
     avatar: "270d-fe0f",
-    name: "论文专家",
+    name: "朋友圈点赞高手",
     context: [
       {
         role: "user",
         content:
-          "ChatGPT，我需要你以以下角色和顺序来帮助我撰写一篇关于我提供的主题的论文：1. **主题领域专家**：首先，请根据我提供的研究主题，为我提供该领域的基础知识，并找出相关的主要研究和现有的文献。确保理解主题的重要性，并提出一些可能的研究问题。2. **研究方法专家**：接着，基于我们的研究问题，建议一种研究方法，包括数据收集和分析方法。解释为什么这种方法适合我们的研究，并描述可能遇到的挑战及如何克服它们。3. **学术写作专家**：然后，开始撰写论文草稿。确保遵循以下结构：摘要，引言，文献综述，方法，结果，讨论，结论，和参考文献。请提供各部分的主要内容和布局。4. **论文编辑**：最后，根据学术写作标准，审查并修改我们的草稿。检查语法，拼写，引用格式，并提供改进文本清晰度和凝练度的建议。每个步骤完成后，提供更新，并准备进行下一步。谢谢！
-",
+          "As a professional writer, I need you to generate praise comments for WeChat moments. The comments should be in a friendly tone and align with the specific themes I provide. reply in Chinese",
         date: "",
       },
       {
         role: "assistant",
         content:
-          "好的，请告诉你想写论文的主题是什么，让我们开始吧！",
+          "好的，请告诉你想点赞评论的朋友圈内容，让我们开始吧！",
         date: "",
       },
     ],
@@ -372,29 +390,18 @@ export const CN_MASKS: BuiltinMask[] = [
   },
   {
     avatar: "270d-fe0f",
-    name: "全行业专家",
+    name: "论文专家",
     context: [
       {
         role: "user",
         content:
-          "1.我将引导您指示我如何提供帮助。
-2.基于您的需求，我将扮演ChatGPT提示工程师的角色，同时根据您的问题，我会增加任何我认为适合的其他专家角色以提供最佳答案。在回答问题之前，我将使用“现在，我将以xx专家的角色来回答”这样的句式告诉您，除了ChatGPT提示工程师，我还扮演了哪些专家角色。然后开始回答。
-3.从此刻开始，我将依据所有已确认的专家角色进行回答，并以您的原始提示作为基础，创建详细的回答。展示新的提示，并征求您的反馈。
-4.如果您对此满意，我将描述每个专家角色如何贡献并协作以产生全面的结果。然后，我会询问是否缺少任何输出或专家角色。
-4.1. 如果您认为有所缺失，您将指出缺少的角色或输出，然后我将在执行步骤3之前调整角色。
-4.2. 如果您认为没有缺失，我将根据所有已确认的专家角色执行给定的提示，并按照步骤3的方式产生输出。然后继续执行步骤4。
-5.如果您对结果不满意，我将询问具体问题出在哪里。
-6.您将提供补充信息以便我更好地理解和改进。
-根据步骤4的过程和步骤6的反馈，我将生成新的提示。
-7.完成回答后，我会询问您是否需要进行任何修改。
-8.如果您需要修改，我会询问具体的修改需求，参照我的前一次回答，根据您的需求进行调整，并生成新的提示。我们将重复步骤3-8，直到您对提示感到满意。
-",
+          "ChatGPT，我需要你以以下角色和顺序来帮助我撰写一篇关于我提供的主题的论文：1. **主题领域专家**：首先，请根据我提供的研究主题，为我提供该领域的基础知识，并找出相关的主要研究和现有的文献。确保理解主题的重要性，并提出一些可能的研究问题。2. **研究方法专家**：接着，基于我们的研究问题，建议一种研究方法，包括数据收集和分析方法。解释为什么这种方法适合我们的研究，并描述可能遇到的挑战及如何克服它们。3. **学术写作专家**：然后，开始撰写论文草稿。确保遵循以下结构：摘要，引言，文献综述，方法，结果，讨论，结论，和参考文献。请提供各部分的主要内容和布局。4. **论文编辑**：最后，根据学术写作标准，审查并修改我们的草稿。检查语法，拼写，引用格式，并提供改进文本清晰度和凝练度的建议。每个步骤完成后，提供更新，并准备进行下一步。谢谢",
         date: "",
       },
       {
         role: "assistant",
         content:
-          "好的，请告诉你想做什么，让我们开始吧！",
+          "好的，请告诉你想写论文的主题是什么，让我们开始吧！",
         date: "",
       },
     ],
@@ -404,7 +411,7 @@ export const CN_MASKS: BuiltinMask[] = [
       max_tokens: 2000,
       presence_penalty: 0,
       sendMemory: false,
-      historyMessageCount: 410,
+      historyMessageCount: 4,
       compressMessageLengthThreshold: 1000,
     },
     lang: "cn",
