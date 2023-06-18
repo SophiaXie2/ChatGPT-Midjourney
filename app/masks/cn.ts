@@ -8,7 +8,7 @@ export const CN_MASKS: BuiltinMask[] = [
     syncGlobalConfig:false,
     modelConfig:{"model":"gpt-3.5-turbo-0613","temperature":0.5,"max_tokens":2000,"presence_penalty":0,"sendMemory":true,"historyMessageCount":4,"compressMessageLengthThreshold":1000},
     lang:"cn",
-    builtin:false,
+    builtin: true,
     hideContext:true
     },
   {
